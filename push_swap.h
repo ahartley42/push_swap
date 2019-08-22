@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 22:37:18 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/19 15:25:17 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/08/22 09:13:37 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,8 @@ typedef struct		s_psl
 }					t_psl;
 
 void	in_cmd(char *cmd, t_psl **s1, t_psl **s2);
+void	sort_3(t_psl *s, t_psl *s2);
+void	sort_5(t_psl *s, t_psl *s2);
+int		ordered(t_psl *head, t_psl *empty);
 
 #endif

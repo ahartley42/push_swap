@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 16:00:49 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/20 12:28:44 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/08/22 09:13:11 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ static void	psh_cmd(t_psl **s1, t_psl **s2)
 
 void	in_cmd(char *cmd, t_psl **s1, t_psl **s2)
 {
+	ft_putendl(cmd);
 	if (ft_strequ(cmd, "ra") == 1 || ft_strequ(cmd, "rra") == 1)
 		rot_cmd(cmd, s1);
 	else if (ft_strequ(cmd, "rb") == 1 || ft_strequ(cmd, "rrb") == 1)
