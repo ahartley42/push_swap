@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 16:00:49 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/22 09:13:11 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/08/26 14:27:10 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,16 @@ static void	rot_cmd(char *cmd, t_psl **s)
 static void	swp_cmd(t_psl **s)
 {
 	int	temp;
+	int	temp2;
 
 	if (*s && (*s)->next)
 	{
 		temp = (*s)->next->a;
 		(*s)->next->a = (*s)->a;
 		(*s)->a = temp;
+		temp2 = (*s)->next->n;
+		(*s)->next->n = (*s)->n;
+		(*s)->n = temp2;
 	}
 }
 
