@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   new_link.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/13 22:37:18 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/26 13:59:02 by ahartley         ###   ########.fr       */
+/*   Created: 2019/08/26 09:49:51 by ahartley          #+#    #+#             */
+/*   Updated: 2019/08/26 09:59:50 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
-typedef struct		s_psl
+t_psl	*new_link(int content)
 {
-	int				a;
-	int				n;
-	struct s_psl	*next;
-}					t_psl;
+	t_psl	*new;
 
-void	in_cmd(char *cmd, t_psl **s1, t_psl **s2);
-void	sort_3(t_psl *s, t_psl *s2);
-void	sort_5(t_psl *s, t_psl *s2);
-int		ordered(t_psl *head, t_psl *empty);
-t_psl	*new_link(int content);
-void	normal(t_psl *stack);
-
-#endif
+	if (!(new = (t_psl *)malloc(sizeof(new) + 1)))
+	{
+		write(2, "Error\n", 6);
+		exit(-1);
+	}
+	new->a = content;
+	new->n = 0;
+	new->next = NULL;
+	return (new);
+}

@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   normal.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/13 22:37:18 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/26 13:59:02 by ahartley         ###   ########.fr       */
+/*   Created: 2019/08/26 13:39:36 by ahartley          #+#    #+#             */
+/*   Updated: 2019/08/26 14:00:28 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
+#include "libft/libft.h"
 
-typedef struct		s_psl
+void	normal(t_psl *stack)
 {
-	int				a;
-	int				n;
-	struct s_psl	*next;
-}					t_psl;
+	t_psl	*cmp;
+	t_psl	*it;
 
-void	in_cmd(char *cmd, t_psl **s1, t_psl **s2);
-void	sort_3(t_psl *s, t_psl *s2);
-void	sort_5(t_psl *s, t_psl *s2);
-int		ordered(t_psl *head, t_psl *empty);
-t_psl	*new_link(int content);
-void	normal(t_psl *stack);
-
-#endif
+	it = stack;
+	while (it)
+	{
+		it->n++;
+		cmp = stack;
+		while (cmp)
+		{
+			if (it->a > cmp->a)
+				it->n++;
+			cmp = cmp->next;
+		}
+		it = it->next;
+	}
+}
