@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 10:06:22 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/29 15:05:12 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/08/29 15:16:40 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ static void	err(void)
 	exit(-1);
 }
 
-static void error_check(int *ac, char **av)
+static void error_check(int ac, char **av)
 {
 	int		i;
 	int		j;
 	char	*s = NULL;
 
 	i = 0;
-	if (*ac < 2)
+	if (ac < 2)
 		err();
 	while (av[i])
 	{
@@ -53,7 +53,6 @@ static void error_check(int *ac, char **av)
 		i++;
 		free(s);
 	}
-	*ac = i + 1;
 	i = 0;
 	while (av[i])
 	{
@@ -104,20 +103,16 @@ int			main(int ac, char **av)
 	if (ac == 2)
 	{
 		av = ft_strsplit(av[0], ' ');
-		while (av[i])
-		{
-			ac += i;
-			i++;
-		}
+		while (av[++i])
+			ac++;
 	}
-	error_check(&ac, &av[0]);
-	printf("%d\n", ac);
+	error_check(ac, &av[0]);
 	i = 0;
 	ft_bzero(buf, 6);
 	store = new_link(ft_atoi(av[i++]));
 	store2 = NULL;
 	go = store;
-	while (i < ac)
+	while (i + 1 < ac)
 	{
 		go->next = new_link(ft_atoi(av[i]));
 		go = go->next;

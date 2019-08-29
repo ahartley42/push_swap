@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 16:34:22 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/26 13:59:45 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/08/29 15:28:58 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	error_check(int ac, char **av)
 	int	i;
 	int	j;
 
-	i = 1;
+	i = 0;
 	if (ac < 2)
 		err();
 	while (av[i])
@@ -34,7 +34,7 @@ static void	error_check(int ac, char **av)
 			err();
 		i++;
 	}
-	i = 1;
+	i = 0;
 	while (av[i])
 	{
 		j = i + 1;
@@ -75,17 +75,24 @@ int			main(int ac, char **av)
 	int		i;
 	char	buf[6];
 
+	av++;
+	i = 0;
+	if (ac == 2)
+	{
+		av = ft_strsplit(av[0], ' ');
+		while (av[++i])
+			ac++;
+	}
 	error_check(ac, av);
-	i = 1;
+	i = 0;
 	ft_bzero(buf, 6);
 	store = new_link(ft_atoi(av[i++]));
 	store2 = NULL;
 	thru = store;
-	while (i < ac)
+	while (i < ac - 1)
 	{
-		thru->next = new_link(ft_atoi(av[i]));
+		thru->next = new_link(ft_atoi(av[i++]));
 		thru = thru->next;
-		i++;
 	}
 	ordered(store, store2);
 	normal(store);
