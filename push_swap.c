@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 16:34:22 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/29 15:28:58 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/08/29 15:30:35 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int			main(int ac, char **av)
 	t_psl	*store2;
 	t_psl	*thru;
 	int		i;
-	char	buf[6];
 
 	av++;
 	i = 0;
@@ -85,7 +84,6 @@ int			main(int ac, char **av)
 	}
 	error_check(ac, av);
 	i = 0;
-	ft_bzero(buf, 6);
 	store = new_link(ft_atoi(av[i++]));
 	store2 = NULL;
 	thru = store;
