@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 10:06:22 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/20 12:28:46 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/08/29 15:05:12 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static void printstack(t_psl *s)
 	{
 		while (s->next)
 		{
-			printf("%d - ", s->a);
+			printf("%d(%d) - ", s->a, s->n);
 			s = s->next;
 		}
-		printf("%d\n", s->a);
+		printf("%d(%d)\n", s->a, s->n);
 	}
 }
 
@@ -36,21 +36,25 @@ static void	err(void)
 	exit(-1);
 }
 
-static void	error_check(int ac, char **av)
+static void error_check(int *ac, char **av)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*s = NULL;
 
-	i = 1;
-	if (ac < 2)
+	i = 0;
+	if (*ac < 2)
 		err();
 	while (av[i])
 	{
-		if (!ft_strequ(ft_itoa(ft_atoi(av[i])), av[i]))
+		s = ft_itoa(ft_atoi(av[i]));
+		if (!ft_strequ(s, av[i]))
 			err();
 		i++;
+		free(s);
 	}
-	i = 1;
+	*ac = i + 1;
+	i = 0;
 	while (av[i])
 	{
 		j = i + 1;
@@ -64,18 +68,7 @@ static void	error_check(int ac, char **av)
 	}
 }
 
-t_psl		*new_link(int content)
-{
-	t_psl	*new;
-
-	if (!(new = (t_psl *)malloc(sizeof(new) + 1)))
-		err();
-	new->a = content;
-	new->next = NULL;
-	return (new);
-}
-
-void		ordered(t_psl *head, t_psl *empty)
+int		ordered(t_psl *head, t_psl *empty)
 {
 	t_psl	*ret;
 
@@ -84,8 +77,8 @@ void		ordered(t_psl *head, t_psl *empty)
 		ret = head;
 		while (ret->next)
 		{
-			if (ret->a > ret->next->a)
-				return ;
+			if (ret->n > ret->next->n)
+				return (0);
 			ret = ret->next;
 		}
 		
@@ -95,29 +88,43 @@ void		ordered(t_psl *head, t_psl *empty)
 			exit(1);
 		}
 	}
+	return (0);
 }
 
 int			main(int ac, char **av)
 {
 	t_psl	*store;
 	t_psl	*store2;
-	t_psl	*head;
+	t_psl	*go;
 	int		i;
 	char	buf[6];
-	
-	error_check(ac, av);
-	i = 1;
+
+	av++;
+	i = 0;
+	if (ac == 2)
+	{
+		av = ft_strsplit(av[0], ' ');
+		while (av[i])
+		{
+			ac += i;
+			i++;
+		}
+	}
+	error_check(&ac, &av[0]);
+	printf("%d\n", ac);
+	i = 0;
 	ft_bzero(buf, 6);
 	store = new_link(ft_atoi(av[i++]));
 	store2 = NULL;
-	head = store;
+	go = store;
 	while (i < ac)
 	{
-		store->next = new_link(ft_atoi(av[i]));
-		store = store->next;
+		go->next = new_link(ft_atoi(av[i]));
+		go = go->next;
 		i++;
 	}
-	store = head;
+	normal(store);
+	printstack(store); 					//creation bug check
 	ordered(store, store2);
 	while (read(0, buf, 5) > 0)
 	{
@@ -132,8 +139,8 @@ int			main(int ac, char **av)
 			i++;
 		}
 		in_cmd(buf, &store, &store2);
-		printstack(store);
-		printstack(store2);
+		printstack(store); 				//print stack A
+		printstack(store2); 			//print stack B
 		ordered(store, store2);
 		ft_bzero(buf, 4);
 	}
