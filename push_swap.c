@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 16:34:22 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/29 15:30:35 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/09/05 13:01:06 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,33 @@ int			main(int ac, char **av)
 		sort_3(store, store2);
 	else if (ac <= 6)
 		sort_5(store, store2);
+	else
+	{
+		i = 1;
+		while (i <= ac - 1)
+		{
+			if (i + 1 < ac - 1)
+			{
+				ps_algo_auto(i, i + 1, store, store2);
+				i += 1;
+			}
+			else
+			{
+				ps_algo_auto(i, ac - 1, store, store2);
+				break ;
+			}
+			printf("--\n");
+			printstack(store);
+			printstack(store2);
+			i++;
+			printf("--\n");
+		}
+/*		while (1)
+		{
+			in_cmd("ra", &store, &store2);
+			ordered(store, store2);
+		}*/
+	}
 	ordered(store, store2);
 	return (0);
 }

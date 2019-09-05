@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/13 22:37:18 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/26 13:59:02 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/09/05 13:00:58 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,10 @@ void	sort_5(t_psl *s, t_psl *s2);
 int		ordered(t_psl *head, t_psl *empty);
 t_psl	*new_link(int content);
 void	normal(t_psl *stack);
+int		find_min(t_psl *s);
+int		find_max(t_psl *s);
+void	pushback_b(int min, int max, t_psl *sa, t_psl *sb);
+void	ps_algo_auto(int min, int max, t_psl *sa, t_psl *sb);
+void	printstack(t_psl *s);
 
 #endif
