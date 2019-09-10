@@ -6,13 +6,24 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 16:30:38 by ahartley          #+#    #+#             */
-/*   Updated: 2019/09/09 16:04:55 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/09/10 16:16:42 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 #include <stdio.h>
+
+void	rot_top(int min, t_psl **sa, t_psl **sb)
+{
+	if (*sa)
+	{
+		while (min != 1 && (*sa)->n != min - 1)
+			in_cmd("ra", sa, sb);
+		if (min != 1)
+			in_cmd("ra", sa, sb);
+	}
+}
 
 void	printstack(t_psl *s)
 {
@@ -69,5 +80,6 @@ void	ps_algo_auto(int min, int max, t_psl **sa, t_psl **sb)
 			in_cmd("ra", sa, sb);
 		ordered(*sa, *sb);
 	}
+	rot_top(min, sa, sb);
 	pushback_b(min, max, sa, sb);
 }
