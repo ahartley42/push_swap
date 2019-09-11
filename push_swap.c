@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 16:34:22 by ahartley          #+#    #+#             */
-/*   Updated: 2019/09/10 16:13:38 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/09/11 10:33:54 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,14 @@ int			main(int ac, char **av)
 		i = 1;
 		while (i <= ac - 1)
 		{
-			if (i + 4 < ac - 1)
-				ps_algo_auto(i, i + 4, &store, &store2);
+			if (i + 20 < ac - 1)
+				ps_algo_auto(i, i + 20, &store, &store2);
 			else
 			{
 				ps_algo_auto(i, ac - 1, &store, &store2);
 				i = ac;
 			}
-			i += 5;
+			i += 21;
 			ordered(store, store2);
 		}
 	}

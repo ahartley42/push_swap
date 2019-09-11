@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 10:06:22 by ahartley          #+#    #+#             */
-/*   Updated: 2019/09/05 11:40:52 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/09/11 10:29:02 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft/libft.h"
 #include <stdio.h>
 
-static void printstack(t_psl *s)
+/*void printstack(t_psl *s)
 {
 	printf("STACK: ");
 	if (!s)
@@ -28,7 +28,7 @@ static void printstack(t_psl *s)
 		}
 		printf("%d(%d)\n", s->a, s->n);
 	}
-}
+}*/
 
 static void	err(void)
 {
@@ -119,23 +119,23 @@ int			main(int ac, char **av)
 		i++;
 	}
 	normal(store);
-	printstack(store); 					//creation bug check
+//	printstack(store); 					//creation bug check
 	ordered(store, store2);
-	while (read(0, buf, 5) > 0)
+	while (read(0, buf, 3) > 0)
 	{
-		i = 0;
-		while (buf[i])
+		if (buf[2] == '\n')
+			buf[2] = '\0';
+		else
 		{
-			if (buf[i] == '\n')
+			if (read(0, &buf[3], 1) > 0)
 			{
-				buf[i] = 0;
-				break ;
+				if (buf[3] == '\n')
+					buf[3] = '\0';
 			}
-			i++;
 		}
 		in_cmd(buf, &store, &store2);
-		printstack(store); 				//print stack A
-		printstack(store2); 			//print stack B
+//		printstack(store); 				//print stack A
+//		printstack(store2); 			//print stack B
 		ordered(store, store2);
 		ft_bzero(buf, 4);
 	}
