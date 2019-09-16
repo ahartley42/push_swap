@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 09:42:19 by ahartley          #+#    #+#             */
-/*   Updated: 2019/09/13 15:07:11 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/09/16 15:26:32 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,39 @@ void	rotb_tune(t_psl **sa, t_psl **sb)
 		else
 			in_cmd("rrb", sa, sb);
 	}
+}
+
+// concerning ints
+
+int	fx_1(t_psl *s, int min, int max)
+{
+	int	i;
+
+	i = 0;
+	while (s->n < min && s->n > max)
+	{
+		i++;
+		s = s->next;
+	}
+	return (i);
+}
+
+int fx_2(t_psl *s, int min, int max)
+{
+	int	rng;
+	int	i;
+
+	rng = max - min + 1;
+	i = count_iter(s);
+	while (rng > 0)
+	{
+		if (s->n >= min && s->n <= max)
+			rng--;
+		if (rng > 0)
+		{
+			s = s->next;
+			i--;
+		}
+	}
+	return (i);
 }
