@@ -100,5 +100,4 @@ void	ps_algo_auto(int min, int max, t_psl **sa, t_psl **sb)
 	}
 	rot_top(min, sa, sb);
 	pushback_b(min, max, sa, sb);
-	while (1){}
 }
