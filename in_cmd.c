@@ -6,12 +6,12 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/18 16:00:49 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/26 14:27:10 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/09/09 13:33:36 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "push_swap.h"
+#include "libft/libft.h"
 
 static void	rot_cmd(char *cmd, t_psl **s)
 {
@@ -32,7 +32,6 @@ static void	rot_cmd(char *cmd, t_psl **s)
 		}
 		else if (ft_strequ(cmd, "rra") == 1 || ft_strequ(cmd, "rrb") == 1)
 		{
-
 			while (head->next->next)
 				head = head->next;
 			temp = head->next;
@@ -81,6 +80,7 @@ static void	dbl_cmd(char *cmd, t_psl **s1, t_psl **s2)
 static void	psh_cmd(t_psl **s1, t_psl **s2)
 {
 	t_psl	*temp;
+
 	if (*s1)
 	{
 		temp = (*s1)->next;
@@ -98,7 +98,7 @@ static void	psh_cmd(t_psl **s1, t_psl **s2)
 	}
 }
 
-void	in_cmd(char *cmd, t_psl **s1, t_psl **s2)
+void		in_cmd(char *cmd, t_psl **s1, t_psl **s2)
 {
 	ft_putendl(cmd);
 	if (ft_strequ(cmd, "ra") == 1 || ft_strequ(cmd, "rra") == 1)

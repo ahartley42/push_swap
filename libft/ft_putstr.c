@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 07:55:00 by ahartley          #+#    #+#             */
-/*   Updated: 2019/06/11 12:33:52 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/10/29 10:56:22 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void	ft_putstr(char const *s)
 {
 	if (!s)
 		return ;
-	ft_putstr_fd(s, 1);
+	write(1, s, ft_strlen(s));
 }

@@ -49,9 +49,8 @@ char		**ft_strsplit(char const *s, char c)
 			i++;
 		while (s[i + k] && s[i + k] != c)
 			k++;
-		if (!(ans[j] = (char *)malloc(k + 1)))
+		if (!(ans[j] = ft_strsub(s, i, k)))
 			return (NULL);
-		ans[j] = ft_strsub(s, i, k);
 		i = i + k;
 		j++;
 	}

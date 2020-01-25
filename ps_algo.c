@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 19:38:49 by ahartley          #+#    #+#             */
-/*   Updated: 2019/08/26 14:03:50 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/08/30 12:01:54 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,18 @@ void	sort_3(t_psl *s, t_psl *s2)
 
 void	sort_5(t_psl *s, t_psl *s2)
 {
-	int	min;
-	int	max;
 	int	c;
 
-	min = find_min(s);
-	max = find_max(s);
 	c = 0;
-	while (c < max - 3)
+	while (c < 2)
 	{
-		if (s->n == min || s->n == max)
+		if (s->n == 1 || s->n == 5)
 		{
 			in_cmd("pb", &s, &s2);
 			c++;
 		}
-		else if (s->next->n == min || s->next->n == max || \
-				((s->next->next->n == min || s->next->next->n == max) && !s2))
+		else if (s->next->n == 1 || s->next->n == 5 || \
+				((s->next->next->n == 1 || s->next->next->n == 5) && !s2))
 			in_cmd("ra", &s, &s2);
 		else
 			in_cmd("rra", &s, &s2);

@@ -6,47 +6,12 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/19 16:34:22 by ahartley          #+#    #+#             */
-/*   Updated: 2019/09/11 10:33:54 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/11/05 23:11:59 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
-#include <stdio.h>
-
-static void	err(void)
-{
-	write(2, "Error\n", 6);
-	exit(-1);
-}
-
-static void	error_check(int ac, char **av)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	if (ac < 2)
-		err();
-	while (av[i])
-	{
-		if (!ft_strequ(ft_itoa(ft_atoi(av[i])), av[i]))
-			err();
-		i++;
-	}
-	i = 0;
-	while (av[i])
-	{
-		j = i + 1;
-		while (av[j])
-		{
-			if (ft_strequ(av[i], av[j]))
-				err();
-			j++;
-		}
-		i++;
-	}
-}
 
 int			ordered(t_psl *head, t_psl *empty)
 {
@@ -65,6 +30,46 @@ int			ordered(t_psl *head, t_psl *empty)
 			exit(1);
 	}
 	return (0);
+}
+
+static void	auto_sort(int ac, t_psl *store, t_psl *store2)
+{
+	int	i;
+	int	range;
+
+	range = 37;
+	if (ac <= 4)
+		sort_3(store, store2);
+	else if (ac <= 6)
+		sort_5(store, store2);
+	else
+	{
+		i = 1;
+		while (i <= ac - 1)
+		{
+			if (i + range < ac - 1)
+				ps_algo_auto(i, i + range, &store, &store2);
+			else
+				ps_algo_auto(i, ac - 1, &store, &store2);
+			i += range;
+			ordered(store, store2);
+		}
+		while (store->n != 1)
+			in_cmd("ra", &store, &store2);
+		ordered(store, store2);
+	}
+}
+
+void		maker(int ac, char **av, t_psl **thru)
+{
+	int	i;
+
+	i = 1;
+	while (i < ac - 1)
+	{
+		(*thru)->next = new_link(ft_atoi(av[i++]));
+		*thru = (*thru)->next;
+	}
 }
 
 int			main(int ac, char **av)
@@ -87,35 +92,9 @@ int			main(int ac, char **av)
 	store = new_link(ft_atoi(av[i++]));
 	store2 = NULL;
 	thru = store;
-	while (i < ac - 1)
-	{
-		thru->next = new_link(ft_atoi(av[i++]));
-		thru = thru->next;
-	}
+	maker(ac, av, &thru);
 	ordered(store, store2);
 	normal(store);
-	if (ac <= 4)
-		sort_3(store, store2);
-	else if (ac <= 6)
-		sort_5(store, store2);
-	else
-	{
-		i = 1;
-		while (i <= ac - 1)
-		{
-			if (i + 20 < ac - 1)
-				ps_algo_auto(i, i + 20, &store, &store2);
-			else
-			{
-				ps_algo_auto(i, ac - 1, &store, &store2);
-				i = ac;
-			}
-			i += 21;
-			ordered(store, store2);
-		}
-	}
-	while (store->n != find_min(store))
-		in_cmd("ra", &store, &store2);
-	ordered(store, store2);
+	auto_sort(ac, store, store2);
 	return (0);
 }

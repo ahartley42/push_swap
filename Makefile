@@ -6,7 +6,7 @@
 #    By: ahartley <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/04 16:29:39 by ahartley          #+#    #+#              #
-#    Updated: 2019/09/16 15:33:28 by ahartley         ###   ########.fr        #
+#    Updated: 2019/09/17 09:36:43 by ahartley         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,24 +16,39 @@ NAME_C = checker
 
 FLAGS = -Wall -Wextra -Werror
 
-SRCS = 	in_cmd.c \
+SRC_P = pre_check.c \
+		in_cmd.c \
 		libft/libft.a \
 		new_link.c \
 		normal.c \
 		ps_algo.c \
 		ps_algo_auto.c
 
-INCL = -I.
+SRC_C = pre_check.c \
+		in_cmd.c \
+		libft/libft.a \
+		new_link.c \
+		normal.c
 
 all:
-	make -C srcs/libft/ re
-	gcc $(FLAGS) $(NAME_P).c $(INCL) $(SRCS) -o $(NAME_P)
-	gcc $(FLAGS) $(NAME_C).c $(INCL) $(SRCS) -o $(NAME_C)
+	@make -C libft/ re
+	@gcc $(FLAGS) $(NAME_P).c $(SRC_P) -o $(NAME_P)
+	@gcc $(FLAGS) $(NAME_C).c $(SRC_C) -o $(NAME_C)
+
+$(NAME_P):
+	@make -C libft/ re
+	@gcc $(FLAGS) -g $(NAME_P).c $(SRC_P)
+
+$(NAME_C):
+	@make -C libft/ re
+	@gcc $(FLAGS) -g $(NAME_C).c $(SRC_C)
 
 clean:
-	/bin/rm -f $(OBJ)
+	@make -C libft/ clean
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@make -C libft/ fclean
+	@/bin/rm -f $(NAME_P)
+	@/bin/rm -f $(NAME_C)
 
 re: fclean all

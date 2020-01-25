@@ -6,7 +6,7 @@
 /*   By: ahartley <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/27 09:20:32 by ahartley          #+#    #+#             */
-/*   Updated: 2019/06/11 12:34:22 by ahartley         ###   ########.fr       */
+/*   Updated: 2019/10/29 10:56:53 by ahartley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,5 @@ void	ft_putstr_fd(char const *s, int fd)
 	i = 0;
 	if (!s || !fd)
 		return ;
-	while (s[i])
-	{
-		ft_putchar_fd(s[i], fd);
-		i++;
-	}
+	write(fd, s, ft_strlen(s));
 }
