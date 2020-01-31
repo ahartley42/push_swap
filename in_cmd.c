@@ -98,7 +98,7 @@ static void	psh_cmd(t_psl **s1, t_psl **s2)
 	}
 }
 
-void		in_cmd(char *cmd, t_psl **s1, t_psl **s2)
+void		in_cmd(char *cmd, t_psl **s1, t_psl **s2, int f)
 {
 	ft_putendl(cmd);
 	if (ft_strequ(cmd, "ra") == 1 || ft_strequ(cmd, "rra") == 1)
@@ -117,8 +117,7 @@ void		in_cmd(char *cmd, t_psl **s1, t_psl **s2)
 	else if (ft_strequ(cmd, "pa") == 1)
 		psh_cmd(s2, s1);
 	else
-	{
-		write(2, "Error\n", 6);
-		exit(-1);
-	}
+		err();
+	flag_o(f, *s1, *s2);
+	ordered(*s1, *s2);
 }

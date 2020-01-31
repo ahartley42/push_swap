@@ -15,7 +15,7 @@
 
 void	err(void)
 {
-	write(2, "Error\n", 6);
+	write(2, "\x1b[31mError\x1b[0m\n", 15);
 	exit(-1);
 }
 
@@ -60,30 +60,16 @@ void	error_check(int ac, char **av)
 	}
 }
 
-void	printstack(t_psl *sa, t_psl *sb)
+int		av_split(int ac, char ***av)
 {
-	printf("STACK: ");
-	if (!sa)
-		printf("EMPTY\n");
-	else
+	int	i;
+
+	i = 0;
+	if (ac == 2)
 	{
-		while (sa->next)
-		{
-			printf("%d(%d) - ", sa->a, sa->n);
-			sa = sa->next;
-		}
-		printf("%d(%d)\n", sa->a, sa->n);
+		*av = ft_strsplit((*av)[0], ' ');
+		while ((*av)[++i])
+			ac++;
 	}
-	printf("STACK: ");
-	if (!sb)
-		printf("EMPTY\n");
-	else
-	{
-		while (sb->next)
-		{
-			printf("%d(%d) - ", sb->a, sb->n);
-			sb = sb->next;
-		}
-		printf("%d(%d)\n", sb->a, sb->n);
-	}
+	return (ac);
 }

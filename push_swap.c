@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include "libft/libft.h"
 
-int			ordered(t_psl *head, t_psl *empty)
+int		ordered(t_psl *head, t_psl *empty)
 {
 	t_psl	*ret;
 
@@ -32,69 +32,51 @@ int			ordered(t_psl *head, t_psl *empty)
 	return (0);
 }
 
-static void	auto_sort(int ac, t_psl *store, t_psl *store2)
+void	auto_sort(int ac, t_psl *store, t_psl *store2, int f)
 {
 	int	i;
 	int	range;
 
 	range = 37;
 	if (ac <= 4)
-		sort_3(store, store2);
+		sort_3(&store, &store2, f);
 	else if (ac <= 6)
-		sort_5(store, store2);
+		sort_5(&store, &store2, f);
 	else
 	{
 		i = 1;
 		while (i <= ac - 1)
 		{
-			if (i + range < ac - 1)
-				ps_algo_auto(i, i + range, &store, &store2);
-			else
-				ps_algo_auto(i, ac - 1, &store, &store2);
+			ps_algo_auto(i, &store, &store2, f);
 			i += range;
 			ordered(store, store2);
 		}
 		while (store->n != 1)
-			in_cmd("ra", &store, &store2);
+			in_cmd("ra", &store, &store2, f);
 		ordered(store, store2);
 	}
 }
 
-void		maker(int ac, char **av, t_psl **thru)
-{
-	int	i;
-
-	i = 1;
-	while (i < ac - 1)
-	{
-		(*thru)->next = new_link(ft_atoi(av[i++]));
-		*thru = (*thru)->next;
-	}
-}
-
-int			main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	t_psl	*store;
 	t_psl	*store2;
 	t_psl	*thru;
-	int		i;
+	int		flg;
 
 	av++;
-	i = 0;
-	if (ac == 2)
+	if ((flg = flags(*av)) > 0)
 	{
-		av = ft_strsplit(av[0], ' ');
-		while (av[++i])
-			ac++;
+		av++;
+		ac--;
 	}
+	ac = av_split(ac, &av);
 	error_check(ac, av);
-	i = 0;
-	store = new_link(ft_atoi(av[i++]));
+	store = new_link(ft_atoi(av[0]));
 	store2 = NULL;
 	thru = store;
 	maker(ac, av, &thru);
-	ordered(store, store2);
 	normal(store);
-	auto_sort(ac, store, store2);
+	auto_sort(ac, store, store2, flg);
 	return (0);
 }

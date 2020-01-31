@@ -31,4 +31,5 @@ void	normal(t_psl *stack)
 		}
 		it = it->next;
 	}
+	ordered(stack, NULL);
 }

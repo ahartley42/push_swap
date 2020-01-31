@@ -22,13 +22,15 @@ SRC_P = pre_check.c \
 		new_link.c \
 		normal.c \
 		ps_algo.c \
-		ps_algo_auto.c
+		ps_algo_auto.c \
+		flags.c
 
 SRC_C = pre_check.c \
 		in_cmd.c \
 		libft/libft.a \
 		new_link.c \
-		normal.c
+		normal.c \
+		flags.c
 
 all:
 	@make -C libft/ re

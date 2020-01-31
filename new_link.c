@@ -28,6 +28,18 @@ t_psl	*new_link(int content)
 	return (new);
 }
 
+void	maker(int ac, char **av, t_psl **thru)
+{
+	int	i;
+
+	i = 1;
+	while (i < ac - 1)
+	{
+		(*thru)->next = new_link(ft_atoi(av[i++]));
+		*thru = (*thru)->next;
+	}
+}
+
 void	freedom(t_psl **list, t_psl **list2, t_psl **head)
 {
 	if (*list)

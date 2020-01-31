@@ -24,23 +24,28 @@ typedef struct		s_psl
 void				err(void);
 void				error_check(int ac, char **av);
 void				numeral(char **s);
-void				in_cmd(char *cmd, t_psl **s1, t_psl **s2);
-void				sort_3(t_psl *s, t_psl *s2);
-void				sort_5(t_psl *s, t_psl *s2);
+void				in_cmd(char *cmd, t_psl **s1, t_psl **s2, int f);
+void				sort_3(t_psl **s, t_psl **s2, int f);
+void				sort_5(t_psl **s, t_psl **s2, int f);
 int					ordered(t_psl *head, t_psl *empty);
 t_psl				*new_link(int content);
 void				normal(t_psl *stack);
 int					find_min(t_psl *s);
 int					find_max(t_psl *s);
-void				pushback_b(int min, int max, t_psl **s1, t_psl **s2);
-void				ps_algo_auto(int min, int max, t_psl **s1, t_psl **s2);
+void				pushback_b(int min, t_psl **s1, t_psl **s2, int f);
+void				ps_algo_auto(int min, t_psl **s1, t_psl **s2, int f);
 void				printstack(t_psl *sa, t_psl *sb);
-void				rot_top(int min, t_psl **s1, t_psl **s2);
+void				rot_top(int min, t_psl **s1, t_psl **s2, int f);
 int					count_iter(t_psl *stack);
 int					find_val(int val, t_psl *stack);
 void				rota_tune(int min, t_psl **sa, t_psl **sb);
 void				rotb_tune(t_psl **sa, t_psl **sb);
 char				*decide_rot(int min, int max, int rng, t_psl *sa);
 void				freedom(t_psl **list, t_psl **list2, t_psl **head);
+int					flags(char *str);
+void				flag_o(int f, t_psl *sa, t_psl *sb);
+void				auto_sort(int ac, t_psl *store, t_psl *store2, int f);
+void				maker(int ac, char **av, t_psl **thru);
+int					av_split(int ac, char ***av);
 
 #endif

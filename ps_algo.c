@@ -41,39 +41,40 @@ int		find_max(t_psl *s)
 	return (ans);
 }
 
-void	sort_3(t_psl *s, t_psl *s2)
+void	sort_3(t_psl **s, t_psl **s2, int f)
 {
-	if (s->n == find_max(s))
-		in_cmd("ra", &s, &s2);
-	if (s->next->n == find_max(s) && s->next->next)
-		in_cmd("rra", &s, &s2);
-	if (s->next->n == find_min(s))
-		in_cmd("sa", &s, &s2);
+	if ((*s)->n == find_max(*s))
+		in_cmd("ra", s, s2, f);
+	if ((*s)->next->n == find_max(*s) && (*s)->next->next)
+		in_cmd("rra", s, s2, f);
+	if ((*s)->next->n == find_min(*s))
+		in_cmd("sa", s, s2, f);
 }
 
-void	sort_5(t_psl *s, t_psl *s2)
+void	sort_5(t_psl **s, t_psl **s2, int f)
 {
 	int	c;
 
-	c = 0;
-	while (c < 2)
+	c = find_max(*s);
+	while (c > 3)
 	{
-		if (s->n == 1 || s->n == 5)
+		if ((*s)->n == 1 || (*s)->n == 5)
 		{
-			in_cmd("pb", &s, &s2);
-			c++;
+			in_cmd("pb", s, s2, f);
+			c--;
 		}
-		else if (s->next->n == 1 || s->next->n == 5 || \
-				((s->next->next->n == 1 || s->next->next->n == 5) && !s2))
-			in_cmd("ra", &s, &s2);
+		else if ((*s)->next->n == 1 || (*s)->next->n == 5 || \
+				(((*s)->next->next->n == 1 || (*s)->next->next->n == 5) \
+				&& !(*s2)))
+			in_cmd("ra", s, s2, f);
 		else
-			in_cmd("rra", &s, &s2);
+			in_cmd("rra", s, s2, f);
 	}
-	sort_3(s, s2);
-	while (s2)
-		in_cmd("pa", &s, &s2);
-	if (s->n < s->next->n && c > 1)
-		in_cmd("sa", &s, &s2);
-	if (s->n > s->next->n)
-		in_cmd("ra", &s, &s2);
+	sort_3(s, s2, f);
+	while (*s2)
+		in_cmd("pa", s, s2, f);
+	if ((*s)->n < (*s)->next->n && c > 1)
+		in_cmd("sa", s, s2, f);
+	if ((*s)->n > (*s)->next->n)
+		in_cmd("ra", s, s2, f);
 }
