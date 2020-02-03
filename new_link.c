@@ -40,27 +40,33 @@ void	maker(int ac, char **av, t_psl **thru)
 	}
 }
 
-void	freedom(t_psl **list, t_psl **list2, t_psl **head)
-{
-	if (*list)
-	{
-		if ((*list)->next != NULL)
-			freedom(&(*list)->next, &(*list2), &(*head));
-		free(*list);
-		*list = NULL;
-	}
-	else if (*list2)
-	{
-		if ((*list2)->next != NULL)
-			freedom(&(*list), &(*list2)->next, &(*head));
-		free(*list2);
-		*list2 = NULL;
-	}
-	else if (*head)
-	{
-		if ((*head)->next != NULL)
-			freedom(&(*list), &(*list2), &(*head)->next);
-		free(*head);
-		*head = NULL;
-	}
-}
+/*
+** ATTEMPTING TO FREE THE MEMORY I MALLOC'D USING new_link() GENERATES LEAKS
+** BUT I DO NOT LEAK WHEN I DO NOT FREE THE MEMORY CREATED VIA new_link()
+** BELOW IS THE FUNCTION I ATTEMPTED TO USE IN ORDER TO FREE BEFORE MAIN ENDS
+**
+** void	freedom(t_psl **list, t_psl **list2, t_psl **head)
+** {
+**	if (*list)
+**	{
+**		if ((*list)->next != NULL)
+**			freedom(&(*list)->next, &(*list2), &(*head));
+**		free(*list);
+**		*list = NULL;
+**	}
+**	else if (*list2)
+**	{
+**		if ((*list2)->next != NULL)
+**			freedom(&(*list), &(*list2)->next, &(*head));
+**		free(*list2);
+**		*list2 = NULL;
+**	}
+**	else if (*head)
+**	{
+**		if ((*head)->next != NULL)
+**			freedom(&(*list), &(*list2), &(*head)->next);
+**		free(*head);
+**		*head = NULL;
+**	}
+** }
+*/
