@@ -37,7 +37,7 @@ void	auto_sort(int ac, t_psl *store, t_psl *store2, int f)
 	int	i;
 	int	range;
 
-	range = 37;
+	range = 40;
 	if (ac <= 4)
 		sort_3(&store, &store2, f);
 	else if (ac <= 6)
