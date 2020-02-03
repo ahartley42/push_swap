@@ -74,35 +74,35 @@ So maybe you'd like to test how push_swap works with 500 random values, but don'
 
 List of commands sorting 3 values:
 
-``$> ARG=`ruby "puts (1..3).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker $ARG``
+``$> ARG=`ruby -e "puts (1..3).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker $ARG``
 
 Number of commands to sort 3 values:
 
-``$> ARG=`ruby "puts (1..3).to_a.shuffle.join(' ')"`; ./push_swap $ARG | wc -l``
+``$> ARG=`ruby -e "puts (1..3).to_a.shuffle.join(' ')"`; ./push_swap $ARG | wc -l``
 
 List of commands sorting 5 values:
 
-``$> ARG=`ruby "puts (1..5).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker $ARG``
+``$> ARG=`ruby -e "puts (1..5).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker $ARG``
 
 Number of commands to sort 5 values:
 
-``$> ARG=`ruby "puts (1..5).to_a.shuffle.join(' ')"`; ./push_swap $ARG | wc -l``
+``$> ARG=`ruby -e "puts (1..5).to_a.shuffle.join(' ')"`; ./push_swap $ARG | wc -l``
 
 List of commands sorting 100 values:
 
-``$> ARG=`ruby "puts (1..100).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker $ARG``
+``$> ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker $ARG``
 
 Number of commands to sort 100 values:
 
-``$> ARG=`ruby "puts (1..100).to_a.shuffle.join(' ')"`; ./push_swap $ARG | wc -l``
+``$> ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`; ./push_swap $ARG | wc -l``
 
 List of commands sorting 500 values:
 
-``$> ARG=`ruby "puts (1..500).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker $ARG``
+``$> ARG=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`; ./push_swap $ARG | ./checker $ARG``
 
 Number of commands to sort 500 values:
 
-``$> ARG=`ruby "puts (1..500).to_a.shuffle.join(' ')"`; ./push_swap $ARG | wc -l``
+``$> ARG=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`; ./push_swap $ARG | wc -l``
 
 You can always run ``$> echo $ARG`` after running any of the commands listed here to find out what the actual input values were
 
