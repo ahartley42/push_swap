@@ -92,7 +92,7 @@ void	ps_algo_auto(int min, t_psl **sa, t_psl **sb, int f)
 	int	temp;
 
 	max = find_max(*sa);
-	rng = 37;
+	rng = 40;
 	if (min + rng > max)
 		rng = max - min + 1;
 	max = min + rng - 1;
